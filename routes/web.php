@@ -35,9 +35,13 @@ Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->n
 
 Route::post('/admin/login/store', [AuthenticatedSessionController::class, 'store'])->name('admin.login.store');
 
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('status/{id}', [App\Http\Controllers\IndexController::class, 'status'])->name('status');
+
 Route::group(['middleware' => 'admin'], function() {
 
     Route::get('/admin', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('status/{id}', [HomeController::class, 'status'])->name('status');
 
     Route::post('/admin/logout', [AuthenticatedSessionController::class, 'destroy'])->name('admin.logout');
 
